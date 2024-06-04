@@ -13,9 +13,11 @@ const EssayContent: React.FC = () => {
   const [essay, setEssay] = useState<Essay | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const base = import.meta.env.VITE_BASE_URL;
+
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate(`${base}login`);
       return;
     }
 
@@ -27,7 +29,7 @@ const EssayContent: React.FC = () => {
         if (docSnap.exists()) {
           setEssay({ id: docSnap.id, ...docSnap.data() } as Essay);
         } else {
-          navigate('/404');
+          navigate(`${base}404`);
         }
       } catch (error) {
         console.error('エッセイの取得中にエラーが発生しました: ', error);
@@ -55,7 +57,7 @@ const EssayContent: React.FC = () => {
       <p>{essay.content}</p>
       <h2>AI</h2>
       <p>{essay.changed_content}</p>
-      <button onClick={() => navigate('/dashboard')}>戻る</button>
+      <button onClick={() => navigate(`${base}dashboard`)}>戻る</button>
     </div>
   );
 };

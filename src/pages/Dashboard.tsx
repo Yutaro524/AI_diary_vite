@@ -9,8 +9,11 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const { essays } = useEssays();
 
+
+  const base = import.meta.env.VITE_BASE_URL;
+
   if (!user) {
-    navigate('/');
+    navigate(`${base}`);
     return null; // ログインしていない場合は何も表示しない
   }
 
@@ -18,13 +21,13 @@ const Dashboard: React.FC = () => {
     <div>
       <h1>ユーザーごとのトップページ</h1>
       <p>こんにちは、{user.name}さん！</p>
-      <button onClick={() => navigate('/writing')}>エッセイを書く</button>
+      <button onClick={() => navigate(`${base}dashboard`)}>エッセイを書く</button>
       <button onClick={logout}>ログアウト</button>
       <h2>あなたのエッセイ一覧</h2>
       <ul>
         {essays.map((essay) => (
           <li key={essay.id}>
-            <Link to={`/essay/${essay.id}`}>
+            <Link to={`${base}essay/${essay.id}`}>
               {essay.title}
             </Link>
           </li>
