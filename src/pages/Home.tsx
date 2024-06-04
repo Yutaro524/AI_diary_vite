@@ -3,6 +3,8 @@ import { login, logout } from "../lib/auth";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+const base = import.meta.env.VITE_BASE_URL;
+
 export default function Home() {
   const user = useAuth();
   const [waiting, setWaiting] = useState<boolean>(false);
@@ -11,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     if (user) {
       // ユーザーがログインしている場合はユーザーごとのトップページに遷移
-      navigate(`/dashboard`);
+      navigate(`${base}dashboard`);
     }
   }, [user, navigate]);
 

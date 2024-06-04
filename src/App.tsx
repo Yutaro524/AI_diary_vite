@@ -7,15 +7,17 @@ import EssayContent from './pages/Essay';
 import Dashboard from './pages/Dashboard';
 import Layout from './Layout';
 
+const base = import.meta.env.VITE_BASE_URL;
+
 const App: React.FC = () => {
   return (
     <Router>
       <Layout>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/writing" element={<Writing />} />
-        <Route path="/essay/:id" element={<EssayContent />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+          <Route path={`${base}`} element={<Home />} />
+          <Route path={`${base}writing`} element={<Writing />} />
+        <Route path={`${base}essay/:id`} element={<EssayContent />} />
+        <Route path={`${base}dashboard`} element={<Dashboard />} />
         </Routes>
       </Layout>
     </Router>

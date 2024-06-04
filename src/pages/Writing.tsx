@@ -5,6 +5,8 @@ import { useAuth } from '../context/AuthContext';
 import { useEssays } from "../context/essay";
 import { rewriteContent } from '../lib/azureOpenAI';
 
+const base = import.meta.env.VITE_BASE_URL;
+
 const Writing: React.FC = () => {
   const navigate = useNavigate();
   const user = useAuth();
@@ -30,7 +32,7 @@ const Writing: React.FC = () => {
       const changedContent = await rewriteContent(content);      
       await addEssay(title, content, changedContent);
       console.log('エッセイが保存されました');
-      navigate('/dashboard');
+      navigate(`${base}dashboard`);
     } catch (e) {
       console.error('エッセイの保存中にエラーが発生しました: ', e);
       alert('エッセイの保存中にエラーが発生しました');
@@ -58,7 +60,7 @@ const Writing: React.FC = () => {
       <button onClick={saveEssay} disabled={isSaving}>
         保存する
       </button>
-      <button onClick={() => navigate('/dashboard')} disabled={isSaving}>
+      <button onClick={() => navigate(`${base}dashboard`)} disabled={isSaving}>
         戻る
       </button>
     </div>
