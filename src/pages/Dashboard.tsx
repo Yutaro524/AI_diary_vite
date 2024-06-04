@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
     <div>
       <h1>ユーザーごとのトップページ</h1>
       <p>こんにちは、{user.name}さん！</p>
-      <button onClick={() => navigate(`${base}dashboard`)}>エッセイを書く</button>
+      <button onClick={() => navigate(`${base}writing`)}>エッセイを書く</button>
       <button onClick={logout}>ログアウト</button>
       <h2>あなたのエッセイ一覧</h2>
       <ul>
